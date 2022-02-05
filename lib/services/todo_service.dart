@@ -26,4 +26,24 @@ class TodoService {
   deleteTodo(id) async {
     return await _repository!.deleteData('todos', id);
   }
+
+  getAllTodos() async {
+    List<Todo> _todoList = <Todo>[];
+    var todos = await readTodos();
+    todos.forEach((todo) {
+      var todoModel = Todo();
+      todoModel.id = todo["id"];
+      todoModel.title = todo["title"];
+      todoModel.description = todo["description"];
+      todoModel.category = todo["category"];
+      todoModel.todoDate = todo["todoDate"];
+      todoModel.isDone = todo["isDone"];
+      _todoList.add(todoModel);
+    });
+    if (_todoList.isNotEmpty) {
+      _todoList.sort((a, b) => (a.todoDate ?? DateTime.now().toString())
+          .compareTo(b.todoDate ?? DateTime.now().toString()));
+    }
+    return _todoList;
+  }
 }

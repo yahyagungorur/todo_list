@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    getAllTodos();
+    getTodos();
   }
 
   _showSuccessSnackBar(message) {
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (result > 0) {
                       print(result);
                       Navigator.pop(context);
-                      getAllTodos();
+                      getTodos();
                       _showSuccessSnackBar(Text('Deleted'));
                     }
                   },
@@ -61,24 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  getAllTodos() async {
-    _todoList = <Todo>[];
-    var todos = await _todoService.readTodos();
+  getTodos() async {
+    var todos = await _todoService.getAllTodos();
     setState(() {
-      todos.forEach((todo) {
-        var todoModel = Todo();
-        todoModel.id = todo["id"];
-        todoModel.title = todo["title"];
-        todoModel.description = todo["description"];
-        todoModel.category = todo["category"];
-        todoModel.todoDate = todo["todoDate"];
-        todoModel.isDone = todo["isDone"];
-        _todoList.add(todoModel);
-      });
-      if (_todoList.isNotEmpty) {
-        _todoList.sort((a, b) => (a.todoDate ?? DateTime.now().toString())
-            .compareTo(b.todoDate ?? DateTime.now().toString()));
-      }
+      _todoList = todos;
     });
   }
 
