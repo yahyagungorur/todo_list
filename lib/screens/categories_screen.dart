@@ -80,8 +80,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       if (result > 0) {
                         print(result);
                         Navigator.pop(context);
-                        _categoryNameController.text = "";
-                        _categoryDescriptionController.text = "";
+                        _categoryNameController.clear();
+                        _categoryDescriptionController.clear();
                         getCategories();
                       }
                     }
@@ -149,6 +149,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       print(result);
                       Navigator.pop(context);
                       getCategories();
+                      _editCategoryNameController.clear();
+                      _editCategoryDescriptionController.clear();
                       _showSuccessSnackBar(Text('Updated'));
                     }
                   },

@@ -142,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.red,
                       margin: const EdgeInsets.symmetric(horizontal: 15),
                       alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: const Icon(
                         Icons.delete,
                         color: Colors.white,
