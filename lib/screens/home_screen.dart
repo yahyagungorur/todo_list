@@ -26,15 +26,31 @@ class _HomeScreenState extends State<HomeScreen> {
     getTodos();
   }
 
-  _showSuccessSnackBar(message) {
-    var _snackBar = SnackBar(
-      content: message,
-      duration: Duration(seconds: 1),
-    );
+  _showSuccessSnackBar(String message, todo) {
+    var _snackBar;
+    if (todo != null) {
+      _snackBar = SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+          label: "Undo",
+          onPressed: () async {
+            var result = await _todoService.saveTodo(todo);
+            print(result);
+            setState(() {
+              getTodos();
+            });
+          },
+        ),
+      );
+    } else {
+      _snackBar =
+          SnackBar(content: Text(message), duration: Duration(seconds: 1));
+    }
     _globalKey.currentState!.showSnackBar(_snackBar);
   }
 
-  _deleteFormDialog(BuildContext context, id) {
+  _deleteFormDialog(BuildContext context, Todo todo) {
     return showDialog(
         context: context,
         barrierDismissible: true,
@@ -46,12 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text('Cancel')),
               TextButton(
                   onPressed: () async {
-                    var result = await _todoService.deleteTodo(id);
+                    var result = await _todoService.deleteTodo(todo.id);
                     if (result > 0) {
                       print(result);
                       Navigator.pop(context);
                       getTodos();
-                      _showSuccessSnackBar(Text('Deleted'));
+                      _showSuccessSnackBar("Deleted", todo);
                     }
                   },
                   child: Text('Delete'))
@@ -135,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     direction: DismissDirection.endToStart,
                     onDismissed: (_) {
                       setState(() {
-                        _deleteFormDialog(context, _todoList[index].id);
+                        _deleteFormDialog(context, _todoList[index]);
                       });
                     },
                     background: Container(
@@ -165,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .updateTodo(_todoList[index]);
                                 if (result > 0 &&
                                     _todoList[index].isDone == 1) {
-                                  _showSuccessSnackBar(Text('Done'));
+                                  _showSuccessSnackBar("Done", null);
                                 }
                               },
                               toggleable: true,
@@ -195,15 +211,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
         drawer: DrawerNavigation(),
         floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              List<Category> _categoryList =
-                  await _categoryService.getAllCategories();
-              if (_categoryList.isNotEmpty) {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => TodoScreen()));
-              } else {
-                _showSuccessSnackBar(Text("Add a Category"));
-              }
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => TodoScreen()));
             },
             child: const Icon(Icons.add)),
       ),

@@ -13,7 +13,7 @@
 11    <application
 11-->C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:3:4-40:19
 12        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-12-->[androidx.core:core:1.1.0] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\2e94107f30f39be366a17347c2bf100b\core-1.1.0\AndroidManifest.xml:24:18-86
+12-->[androidx.core:core:1.6.0] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\122df2e57d294d1a53db26bbc3b813c1\core-1.6.0\AndroidManifest.xml:24:18-86
 13        android:icon="@mipmap/ic_launcher"
 13-->C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:5:9-43
 14        android:label="todo_list" >
@@ -80,6 +80,19 @@
 54-->C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:38:13-44
 55            android:value="2" />
 55-->C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:39:13-30
-56    </application>
-57
-58</manifest>
+56
+57        <uses-library
+57-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+58            android:name="androidx.window.extensions"
+58-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+59            android:required="false" />
+59-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+60        <uses-library
+60-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+61            android:name="androidx.window.sidecar"
+61-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+62            android:required="false" />
+62-->[androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+63    </application>
+64
+65</manifest>
