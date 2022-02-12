@@ -120,13 +120,6 @@ class _TodoScreenState extends State<TodoScreen> {
                     )),
               ),
               DropdownButtonFormField<dynamic>(
-                validator: (_selectedValue) {
-                  if (_selectedValue != null) {
-                    return null;
-                  } else {
-                    return "Enter a valid category";
-                  }
-                },
                 value: _selectedValue,
                 items: _categories,
                 hint: Text('Category'),

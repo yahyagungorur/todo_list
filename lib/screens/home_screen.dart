@@ -15,15 +15,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Todo> _todoList = <Todo>[];
+  List<Todo> _todoListCategory = <Todo>[];
   final _todoService = TodoService();
   final _categoryService = CategoryService();
   var val = -1;
   final _globalKey = GlobalKey<ScaffoldMessengerState>();
-
+  List<Category> _categoryList = <Category>[];
+  bool checkedValue = false;
   @override
   void initState() {
     super.initState();
     getTodos();
+    getCategories();
+  }
+
+  getCategories() async {
+    List<Category> catList = await _categoryService.getAllCategories();
+    if (catList.isNotEmpty) {
+      setState(() {
+        Category cat = Category();
+        cat.name = "All";
+        cat.description = "All";
+        _categoryList.add(cat);
+        _categoryList.addAll(catList);
+      });
+    }
   }
 
   _showSuccessSnackBar(String message, todo) {
@@ -77,10 +93,22 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
+  getTodosByCategory(categoryName) {
+    setState(() {
+      if (categoryName != "All") {
+        _todoList =
+            _todoListCategory.where((x) => x.category == categoryName).toList();
+      } else {
+        _todoList = _todoListCategory;
+      }
+    });
+  }
+
   getTodos() async {
     var todos = await _todoService.getAllTodos();
     setState(() {
       _todoList = todos;
+      _todoListCategory = todos;
     });
   }
 
@@ -139,76 +167,112 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text('Todo List'),
         ),
-        body: _todoList.isEmpty
-            ? Center(
-                child: Text("Empty todo list"),
-              )
-            : ListView.builder(
-                itemCount: _todoList.length,
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: UniqueKey(),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (_) {
-                      setState(() {
-                        _deleteFormDialog(context, _todoList[index]);
-                      });
-                    },
-                    background: Container(
-                      color: Colors.red,
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: const Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
-                      child: Card(
-                        elevation: 8.0,
-                        child: ListTile(
-                          leading: Radio<dynamic>(
-                              value: 1,
-                              groupValue: _todoList[index].isDone,
-                              onChanged: (value) async {
-                                setState(() {
-                                  _todoList[index].isDone = value ?? 0;
-                                });
-                                var result = await _todoService
-                                    .updateTodo(_todoList[index]);
-                                if (result > 0 &&
-                                    _todoList[index].isDone == 1) {
-                                  _showSuccessSnackBar("Done", null);
-                                }
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _categoryList.isEmpty
+                ? Center(
+                    child: SizedBox(),
+                  )
+                : SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _categoryList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                            padding: EdgeInsets.only(
+                                top: 8.0, left: 16.0, right: 16.0, bottom: 8.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                getTodosByCategory(_categoryList[index].name);
                               },
-                              toggleable: true,
-                              activeColor: Colors.green),
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                _todoList[index].title.toString(),
-                                style: TextStyle(
-                                    decoration: _todoList[index].isDone == 1
-                                        ? TextDecoration.lineThrough
-                                        : TextDecoration.none),
-                              ),
-                            ],
-                          ),
-                          subtitle:
-                              Text(_todoList[index].description.toString()),
-                          trailing: Text(_todoList[index].todoDate.toString()),
-                          onTap: () {
-                            _showFormDialog(context, _todoList[index]);
-                          },
-                        ),
-                      ),
+                              child: Text(_categoryList[index].name.toString()),
+                            ));
+                      },
                     ),
-                  );
-                }),
+                  ),
+            _todoList.isEmpty
+                ? Center(
+                    child: Text("Empty todo list"),
+                  )
+                : Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _todoList.length,
+                        itemBuilder: (context, index) {
+                          return Dismissible(
+                            key: UniqueKey(),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (_) {
+                              setState(() {
+                                _deleteFormDialog(context, _todoList[index]);
+                              });
+                            },
+                            background: Container(
+                              color: Colors.red,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              alignment: Alignment.centerRight,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: const Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  top: 8.0, left: 16.0, right: 16.0),
+                              child: Card(
+                                elevation: 8.0,
+                                child: ListTile(
+                                  leading: Radio<dynamic>(
+                                      value: 1,
+                                      groupValue: _todoList[index].isDone,
+                                      onChanged: (value) async {
+                                        setState(() {
+                                          _todoList[index].isDone = value ?? 0;
+                                        });
+                                        var result = await _todoService
+                                            .updateTodo(_todoList[index]);
+                                        if (result > 0 &&
+                                            _todoList[index].isDone == 1) {
+                                          _showSuccessSnackBar("Done", null);
+                                        }
+                                      },
+                                      toggleable: true,
+                                      activeColor: Colors.green),
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        _todoList[index].title.toString(),
+                                        style: TextStyle(
+                                            decoration:
+                                                _todoList[index].isDone == 1
+                                                    ? TextDecoration.lineThrough
+                                                    : TextDecoration.none),
+                                      ),
+                                    ],
+                                  ),
+                                  subtitle: Text(
+                                      _todoList[index].description.toString()),
+                                  trailing: Text(
+                                      _todoList[index].todoDate.toString()),
+                                  onTap: () {
+                                    _showFormDialog(context, _todoList[index]);
+                                  },
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+          ],
+        ),
         drawer: DrawerNavigation(),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
