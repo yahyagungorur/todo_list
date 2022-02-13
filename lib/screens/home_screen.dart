@@ -7,6 +7,8 @@ import 'package:todo_list/models/todo.dart';
 import 'package:todo_list/screens/todo_screen.dart';
 import 'package:todo_list/services/category_service.dart';
 import 'package:todo_list/services/todo_service.dart';
+import '../helpers/notification_helper.dart';
+import '../models/received_notification.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  NotificationHelper notificationHelper = NotificationHelper();
   List<Todo> _todoList = <Todo>[];
   List<Todo> _todoListCategory = <Todo>[];
   final _todoService = TodoService();
@@ -27,6 +30,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getTodos();
     getCategories();
+    notificationHelper.setOnNotificationClick(onNotificationClick);
+  }
+
+  onNotificationInLowerVersions(ReceivedNotification receivedNotification) {
+    print('onNotificationInLowerVersions Received ${receivedNotification.id}');
+  }
+
+  onNotificationClick(String payload) async {
+    print('onNotificationClick, Payload $payload');
+    Todo todo = await _todoService.readTodoById(payload);
+    _showFormDialog(context, todo);
   }
 
   getCategories() async {
@@ -183,8 +197,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         return Padding(
                             padding: EdgeInsets.only(
-                                top: 8.0, left: 16.0, right: 16.0, bottom: 8.0),
+                                top: 8.0, left: 8.0, right: 8.0, bottom: 8.0),
                             child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
                               onPressed: () {
                                 getTodosByCategory(_categoryList[index].name);
                               },
@@ -240,6 +259,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         if (result > 0 &&
                                             _todoList[index].isDone == 1) {
                                           _showSuccessSnackBar("Done", null);
+                                          await notificationHelper
+                                              .showNotification(
+                                                  _todoList[index]);
                                         }
                                       },
                                       toggleable: true,

@@ -16,7 +16,8 @@ class TodoService {
   }
 
   readTodoById(id) async {
-    return await _repository!.readDataById('todos', id);
+    var todo = await _repository!.readDataById('todos', id);
+    return mapToModel(todo[0]);
   }
 
   updateTodo(Todo todo) async {
@@ -31,19 +32,23 @@ class TodoService {
     List<Todo> _todoList = <Todo>[];
     var todos = await readTodos();
     todos.forEach((todo) {
-      var todoModel = Todo();
-      todoModel.id = todo["id"];
-      todoModel.title = todo["title"];
-      todoModel.description = todo["description"];
-      todoModel.category = todo["category"];
-      todoModel.todoDate = todo["todoDate"];
-      todoModel.isDone = todo["isDone"];
-      _todoList.add(todoModel);
+      _todoList.add(mapToModel(todo));
     });
     if (_todoList.isNotEmpty) {
       _todoList.sort((a, b) => (a.todoDate ?? DateTime.now().toString())
           .compareTo(b.todoDate ?? DateTime.now().toString()));
     }
     return _todoList;
+  }
+
+  mapToModel(todo) {
+    var todoModel = Todo();
+    todoModel.id = todo["id"];
+    todoModel.title = todo["title"];
+    todoModel.description = todo["description"];
+    todoModel.category = todo["category"];
+    todoModel.todoDate = todo["todoDate"];
+    todoModel.isDone = todo["isDone"];
+    return todoModel;
   }
 }
