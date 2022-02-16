@@ -7,6 +7,8 @@ import 'package:todo_list/services/category_service.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list/services/todo_service.dart';
 
+import '../helpers/notification_helper.dart';
+
 class TodoScreen extends StatefulWidget {
   @override
   _TodoScreenState createState() => _TodoScreenState();
@@ -19,6 +21,7 @@ class _TodoScreenState extends State<TodoScreen> {
   final _todoService = TodoService();
   DateTime _datetime = DateTime.now();
   TimeOfDay _timeOfDay = TimeOfDay(hour: 00, minute: 00);
+  NotificationHelper notificationHelper = NotificationHelper();
   var _selectedValue;
   final formGlobalKey = GlobalKey<FormState>();
 
@@ -145,6 +148,8 @@ class _TodoScreenState extends State<TodoScreen> {
                       var result = await _todoService.saveTodo(todoObject);
                       if (result > 0) {
                         print(result);
+                        todoObject.id = result;
+                        await notificationHelper.showNotification(todoObject);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomeScreen()),

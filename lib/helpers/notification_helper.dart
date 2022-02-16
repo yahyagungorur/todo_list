@@ -1,7 +1,11 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_list/models/todo.dart';
 import '../models/received_notification.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 class NotificationHelper {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -15,8 +19,12 @@ class NotificationHelper {
       const InitializationSettings(
     android: initializationSettingsAndroid,
   );
+  // needed if you intend to initialize in the `main` function
 
   Future<void> showNotification(Todo todo) async {
+    await _configureLocalTimeZone();
+    var time = tz.TZDateTime.from(
+        (DateFormat('dd/MM/yyy - HH:mm').parse(todo.todoDate!)), tz.local);
     var androidChannelSpecifics = const AndroidNotificationDetails(
       'CHANNEL_ID',
       'CHANNEL_NAME',
@@ -24,18 +32,33 @@ class NotificationHelper {
       importance: Importance.max,
       priority: Priority.high,
       playSound: true,
-      timeoutAfter: 5000,
       styleInformation: DefaultStyleInformation(true, true),
     );
     var platformChannelSpecifics =
         NotificationDetails(android: androidChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
+    /* await flutterLocalNotificationsPlugin.show(
       0,
       todo.title,
       todo.description, //null
       platformChannelSpecifics,
       payload: todo.id.toString(),
-    );
+    );*/
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        todo.id!,
+        'Reminder - Last 5 Mins to ${todo.title}',
+        todo.description,
+        time.subtract(const Duration(minutes: 5)),
+        platformChannelSpecifics,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        androidAllowWhileIdle: true,
+        payload: todo.id.toString());
+  }
+
+  Future<void> _configureLocalTimeZone() async {
+    tz.initializeTimeZones();
+    final String? timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZoneName!));
   }
 
   setOnNotificationClick(Function onNotificationClick) async {
@@ -45,31 +68,8 @@ class NotificationHelper {
     });
   }
 
-  /*Future<void> showWeeklyAtDayAndTime() async {
-    var time = Time(20, 0, 0);
-    var androidChannelSpecifics = const AndroidNotificationDetails(
-      'CHANNEL_ID_TIME',
-      'CHANNEL_NAME_TIME',
-      "CHANNEL_DESCRIPTION_TIME",
-      importance: Importance.Max,
-      priority: Priority.High,
-    );
-    var iosChannelSpecifics = const IOSNotificationDetails();
-    var platformChannelSpecifics =
-        NotificationDetails(android: androidChannelSpecifics, iOS: iosChannelSpecifics);
-    await flutterLocalNotificationsPlugin.showWeeklyAtDayAndTime(
-      0,
-      '${time.hour}:${time.minute}.${time.second}',
-      'Test Body', //null
-      Day.Saturday,
-      time,
-      platformChannelSpecifics,
-      payload: 'Test Payload',
-    );
-  }*/
-
-  Future<void> cancelNotification() async {
-    await flutterLocalNotificationsPlugin.cancel(0);
+  Future<void> cancelNotification(id) async {
+    await flutterLocalNotificationsPlugin.cancel(id);
   }
 
   Future<void> cancelAllNotification() async {

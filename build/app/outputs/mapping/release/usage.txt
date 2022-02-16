@@ -42,6 +42,9 @@ androidx.media.MediaBrowserServiceCompat$ServiceHandler
 kotlin.jvm.functions.Function12:
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
 kotlin.ranges.UIntProgression
+com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin:
+    public static final void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
+    public static final synthetic void access$setupMethodChannel(com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin,io.flutter.plugin.common.BinaryMessenger)
 androidx.core.view.ActionProvider$VisibilityListener
 com.google.common.cache.LocalCache$SoftValueReference
 com.google.common.collect.ForwardingListIterator
@@ -832,6 +835,7 @@ androidx.core.app.NotificationCompat$Style:
     protected void clearCompatExtraKeys(android.os.Bundle)
     android.graphics.Bitmap createColoredBitmap(androidx.core.graphics.drawable.IconCompat,int)
     public void buildIntoRemoteViews(android.widget.RemoteViews,android.widget.RemoteViews)
+com.whelksoft.flutter_native_timezone.R$color
 kotlinx.coroutines.JobKt__JobKt$DisposableHandle$1
 com.google.common.collect.Synchronized$SynchronizedBiMap
 io.flutter.embedding.android.KeyChannelResponder:
@@ -1553,6 +1557,7 @@ com.google.common.cache.CacheBuilderSpec$DurationParser
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$2
 androidx.core.os.HandlerCompat
 com.google.common.collect.TreeRangeSet$RangesByUpperBound$1
+com.whelksoft.flutter_native_timezone.R$integer
 kotlin.UIntArray
 com.google.common.primitives.Doubles$DoubleArrayAsList
 com.google.common.hash.Hashing$ChecksumType
@@ -2148,6 +2153,7 @@ kotlin.collections.SetsKt__SetsKt:
     private static final java.util.Set buildSet(int,kotlin.jvm.functions.Function1)
     private static final java.util.Set orEmpty(java.util.Set)
     public void <init>()
+com.whelksoft.flutter_native_timezone.R$layout
 androidx.core.view.WindowInsetsAnimationCompat$BoundsCompat
 com.google.common.base.Functions$ToStringFunction
 kotlin.UInt
@@ -2473,8 +2479,8 @@ com.google.common.collect.ImmutableSet
 com.google.common.cache.CacheBuilder$3
 com.google.common.base.FinalizableReferenceQueue$FinalizerLoader
 com.google.common.reflect.Types$GenericArrayTypeImpl
-kotlinx.coroutines.AwaitAll$AwaitAllNode
 kotlinx.coroutines.flow.SharedFlowImpl$WhenMappings
+kotlinx.coroutines.AwaitAll$AwaitAllNode
 javax.annotation.Nonnegative$Checker
 javax.annotation.WillClose
 kotlinx.coroutines.flow.FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$1
@@ -3195,7 +3201,6 @@ kotlin.collections.ArraysKt___ArraysKt:
     private static final java.util.Map associateWithTo(double[],java.util.Map,kotlin.jvm.functions.Function1)
     private static final java.util.Map associateWithTo(boolean[],java.util.Map,kotlin.jvm.functions.Function1)
     private static final java.util.Map associateWithTo(char[],java.util.Map,kotlin.jvm.functions.Function1)
-    public static final java.util.Collection toCollection(java.lang.Object[],java.util.Collection)
     public static final java.util.Collection toCollection(byte[],java.util.Collection)
     public static final java.util.Collection toCollection(short[],java.util.Collection)
     public static final java.util.Collection toCollection(int[],java.util.Collection)
@@ -4147,6 +4152,7 @@ com.google.common.base.CaseFormat$2
 androidx.fragment.app.FragmentContainer
 com.google.common.collect.Maps$EntrySet
 com.google.errorprone.annotations.concurrent.LockMethod
+com.whelksoft.flutter_native_timezone.R$style
 android.support.v4.os.ResultReceiver:
     public void <init>(android.os.Handler)
     public void send(int,android.os.Bundle)
@@ -4453,6 +4459,7 @@ org.threeten.bp.Ser:
     static final byte YEAR_TYPE
     static final byte YEAR_MONTH_TYPE
     static final byte OFFSET_DATE_TIME_TYPE
+com.whelksoft.flutter_native_timezone.R$styleable
 com.google.common.graph.Traverser$TreeTraverser$BreadthFirstIterator
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$mapIndexed$1
 kotlin.collections.AbstractCollection
@@ -5458,6 +5465,7 @@ android.support.v4.media.session.PlaybackStateCompat$CustomAction:
     public java.lang.CharSequence getName()
     public int getIcon()
     public android.os.Bundle getExtras()
+com.whelksoft.flutter_native_timezone.R$dimen
 com.google.common.hash.Murmur3_32HashFunction$Murmur3_32Hasher
 kotlin.jvm.internal.Reflection:
     public void <init>()
@@ -6061,6 +6069,7 @@ com.google.common.cache.CacheBuilder$1
 com.google.common.collect.Synchronized$SynchronizedEntry
 androidx.fragment.app.FragmentPagerAdapter
 kotlin.jvm.JvmRecord
+com.whelksoft.flutter_native_timezone.R$drawable
 androidx.annotation.IntegerRes
 com.google.common.io.BaseEncoding$1
 kotlin.ranges.LongProgression$Companion
@@ -7738,6 +7747,7 @@ com.google.gson.internal.LinkedHashTreeMap$KeySet$1
 com.google.common.cache.CacheLoader$1$1
 androidx.annotation.InspectableProperty$EnumEntry
 com.google.errorprone.annotations.concurrent.GuardedBy
+com.whelksoft.flutter_native_timezone.R
 com.google.common.io.FileBackedOutputStream
 androidx.fragment.app.FragmentController
 com.google.common.io.LineProcessor
@@ -9275,6 +9285,7 @@ com.tekartik.sqflite.R$layout
 androidx.core.app.ShareCompat
 androidx.core.content.SharedPreferencesCompat$EditorCompat
 com.google.common.escape.UnicodeEscaper
+com.whelksoft.flutter_native_timezone.R$string
 com.google.common.collect.ForwardingNavigableMap
 com.google.common.io.FileWriteMode
 androidx.core.view.ViewCompat$Api30Impl
@@ -9360,6 +9371,7 @@ kotlin.comparisons.ComparisonsKt__ComparisonsKt$compareByDescending$1
 com.google.common.util.concurrent.ListenerCallQueue
 io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry$ShimRegistrarAggregate
 com.google.common.util.concurrent.Service$State$6
+com.whelksoft.flutter_native_timezone.R$id
 org.threeten.bp.temporal.UnsupportedTemporalTypeException:
     public void <init>(java.lang.String,java.lang.Throwable)
     private static final long serialVersionUID
@@ -9773,6 +9785,7 @@ android.support.v4.media.session.MediaSessionCompat$QueueItem:
     public long getQueueId()
     public java.lang.Object getQueueItem()
     public static final int UNKNOWN_ID
+com.whelksoft.flutter_native_timezone.R$attr
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$dropWhile$1
 kotlin.NumbersKt__NumbersKt
 kotlin.Triple
@@ -9860,6 +9873,7 @@ org.threeten.bp.chrono.MinguoDate:
     public synthetic bridge org.threeten.bp.chrono.ChronoLocalDate minus(org.threeten.bp.temporal.TemporalAmount)
     private static final long serialVersionUID
 com.google.common.collect.StandardRowSortedTable
+com.whelksoft.flutter_native_timezone.BuildConfig
 com.google.common.base.Platform$JdkPatternCompiler
 org.intellij.lang.annotations.RegExp
 androidx.core.provider.CalleeHandler
@@ -10245,8 +10259,8 @@ com.google.common.collect.ForwardingCollection
 androidx.media.app.NotificationCompat
 com.google.common.util.concurrent.CycleDetectingLockFactory$CycleDetectingReentrantLock
 com.google.common.base.Functions$FunctionForMapNoDefault
-kotlinx.coroutines.test.TestCoroutineContext
 kotlinx.coroutines.Delay
+kotlinx.coroutines.test.TestCoroutineContext
 com.google.common.eventbus.package-info
 androidx.media.MediaBrowserServiceCompat$ServiceCallbacks
 com.google.common.collect.MapMakerInternalMap$StrongKeyWeakValueEntry$Helper
@@ -12759,6 +12773,8 @@ io.flutter.embedding.engine.dart.DartMessenger:
 kotlinx.coroutines.internal.ConcurrentLinkedListNode
 com.google.common.collect.ImmutableMapEntrySet
 com.google.common.util.concurrent.ServiceManager$1
+com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin$Companion:
+    public final void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
 androidx.core.provider.FontProvider$1
 androidx.loader.R$string
 com.google.common.cache.ForwardingLoadingCache$SimpleForwardingLoadingCache
@@ -13385,6 +13401,8 @@ com.google.common.collect.Synchronized$SynchronizedTable
 kotlinx.coroutines.scheduling.ExperimentalCoroutineDispatcher:
     public void close()
     public java.lang.String toString()
+com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin:
+    public static final com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin$Companion Companion
 kotlinx.coroutines.scheduling.TasksKt:
     public static final int BLOCKING_DEFAULT_PARALLELISM
 io.flutter.plugin.editing.ListenableEditingState$1:
@@ -13722,6 +13740,7 @@ org.threeten.bp.ZoneId:
     public static final java.util.Map SHORT_IDS
 io.flutter.embedding.engine.dart.DartMessenger:
     private io.flutter.embedding.engine.dart.DartMessenger$TaskQueueFactory taskQueueFactory
+com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin$Companion
 androidx.core.content.res.ResourcesCompat:
     private static final java.lang.ThreadLocal sTempTypedValue
     private static final java.util.WeakHashMap sColorStateCaches
@@ -13733,5 +13752,5 @@ org.threeten.bp.MonthDay$1
 android.support.v4.media.session.MediaControllerCompat$Callback:
     final android.media.session.MediaController$Callback mCallbackFwk
 org.threeten.bp.chrono.ChronoLocalDate$1
-io.flutter.plugin.common.BinaryMessenger$-CC
 io.flutter.plugin.platform.PlatformView$-CC
+io.flutter.plugin.common.BinaryMessenger$-CC

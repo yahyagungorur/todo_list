@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/helpers/drawer_navigation.dart';
 import 'package:todo_list/models/category.dart';
 import 'package:todo_list/models/todo.dart';
+import 'package:todo_list/providers/theme_provider.dart';
 import 'package:todo_list/screens/todo_screen.dart';
 import 'package:todo_list/services/category_service.dart';
 import 'package:todo_list/services/todo_service.dart';
 import '../helpers/notification_helper.dart';
-import '../models/received_notification.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,16 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
   final _globalKey = GlobalKey<ScaffoldMessengerState>();
   List<Category> _categoryList = <Category>[];
   bool checkedValue = false;
+  bool toogle = false;
   @override
   void initState() {
     super.initState();
     getTodos();
     getCategories();
     notificationHelper.setOnNotificationClick(onNotificationClick);
-  }
-
-  onNotificationInLowerVersions(ReceivedNotification receivedNotification) {
-    print('onNotificationInLowerVersions Received ${receivedNotification.id}');
   }
 
   onNotificationClick(String payload) async {
@@ -98,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pop(context);
                       getTodos();
                       _showSuccessSnackBar("Deleted", todo);
+                      await notificationHelper.cancelNotification(todo.id);
                     }
                   },
                   child: Text('Delete'))
@@ -175,11 +174,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return ScaffoldMessenger(
       key: _globalKey,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Todo List'),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Ink(
+                  width: 48.0,
+                  height: 48.0,
+                  decoration: ShapeDecoration(
+                    shape: const CircleBorder(
+                        side: BorderSide(color: Colors.transparent)),
+                  ),
+                  child: IconButton(
+                      padding: EdgeInsets.zero,
+                      splashRadius: 24.0,
+                      iconSize: 24.0,
+                      icon: themeProvider.isDarkMode
+                          ? Icon(Icons.wb_sunny_rounded)
+                          : Icon(Icons
+                              .nightlight_round_outlined), //BedTime -- wbSunny
+                      onPressed: () {
+                        final provider =
+                            Provider.of<ThemeProvider>(context, listen: false);
+                        provider.toogleTheme(themeProvider.isDarkMode);
+                      }),
+                ),
+              ],
+            )
+          ],
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -260,8 +288,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             _todoList[index].isDone == 1) {
                                           _showSuccessSnackBar("Done", null);
                                           await notificationHelper
-                                              .showNotification(
-                                                  _todoList[index]);
+                                              .cancelNotification(
+                                                  _todoList[index].id);
                                         }
                                       },
                                       toggleable: true,

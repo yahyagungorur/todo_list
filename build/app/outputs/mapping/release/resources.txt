@@ -896,6 +896,8 @@ Referenced Strings:
   bigPicture
   bigPictureBitmapSource
   bigText
+  binding
+  binding.binaryMessenger
   birthDateDay
   birthDateFull
   birthDateMonth
@@ -915,6 +917,7 @@ Referenced Strings:
   byte
   cache
   cached_engine_id
+  call
   callback
   callbackInterface
   callbackWrapper
@@ -924,6 +927,7 @@ Referenced Strings:
   category
   cause
   cell
+  channel
   channelAction
   channelDescription
   channelId
@@ -1093,6 +1097,7 @@ Referenced Strings:
   flutter/textinput
   flutter_assets
   flutter_deeplinking_enabled
+  flutter_native_timezone
   forbidden
   foregroundServiceTypes
   formatter
@@ -1108,6 +1113,7 @@ Referenced Strings:
   getAppBounds
   getApplicationDocumentsDirectory
   getApplicationSupportDirectory
+  getAvailableTimezones
   getBounds
   getChildId
   getConstructorId
@@ -1120,6 +1126,7 @@ Referenced Strings:
   getExternalStorageDirectories
   getIBinder
   getJavaLangAccess
+  getLocalTimezone
   getModule
   getNextMatch
   getNotificationAppLaunchDetails

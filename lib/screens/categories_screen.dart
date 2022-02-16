@@ -222,11 +222,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         key: _globalKey,
         child: Scaffold(
           appBar: AppBar(
-            leading: ElevatedButton(
+            leading: IconButton(
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => HomeScreen())),
-              child: const Icon(Icons.arrow_back),
-              style: ElevatedButton.styleFrom(elevation: 0.0),
+              icon: const Icon(
+                Icons.arrow_back,
+              ),
             ),
             title: const Text('Categories'),
           ),
