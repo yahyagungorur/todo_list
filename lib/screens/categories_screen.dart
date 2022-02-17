@@ -218,58 +218,65 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldMessenger(
-        key: _globalKey,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => HomeScreen())),
-              icon: const Icon(
-                Icons.arrow_back,
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+        return true;
+      },
+      child: ScaffoldMessenger(
+          key: _globalKey,
+          child: Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => HomeScreen())),
+                icon: const Icon(
+                  Icons.arrow_back,
+                ),
               ),
+              title: const Text('Categories'),
             ),
-            title: const Text('Categories'),
-          ),
-          body: _categoryList.isEmpty
-              ? Center(
-                  child: Text("Empty categories list"),
-                )
-              : ListView.builder(
-                  itemCount: _categoryList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                          EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
-                      child: Card(
-                        elevation: 8.0,
-                        child: ListTile(
-                          leading: IconButton(
-                              icon: Icon(Icons.edit),
-                              onPressed: () {
-                                return _editCategory(
-                                    context, _categoryList[index].id);
-                              }),
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(_categoryList[index].name.toString()),
-                              IconButton(
-                                  icon: Icon(Icons.delete, color: Colors.red),
-                                  onPressed: () {
-                                    return _deleteCategory(
-                                        context, _categoryList[index].id);
-                                  })
-                            ],
+            body: _categoryList.isEmpty
+                ? Center(
+                    child: Text("Empty categories list"),
+                  )
+                : ListView.builder(
+                    itemCount: _categoryList.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding:
+                            EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+                        child: Card(
+                          elevation: 8.0,
+                          child: ListTile(
+                            leading: IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {
+                                  return _editCategory(
+                                      context, _categoryList[index].id);
+                                }),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(_categoryList[index].name.toString()),
+                                IconButton(
+                                    icon: Icon(Icons.delete, color: Colors.red),
+                                    onPressed: () {
+                                      return _deleteCategory(
+                                          context, _categoryList[index].id);
+                                    })
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => _showFormDialog(context),
-            child: const Icon(Icons.add),
-          ),
-        ));
+                      );
+                    }),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => _showFormDialog(context),
+              child: const Icon(Icons.add),
+            ),
+          )),
+    );
   }
 }

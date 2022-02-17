@@ -68,99 +68,108 @@ class _TodoScreenState extends State<TodoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Create Todo'),
-      ),
-      body: Form(
-        key: formGlobalKey,
-        child: (Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                validator: (_todoTitleController) {
-                  if (_todoTitleController!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return "Enter a valid Title";
-                  }
-                },
-                controller: _todoTitleController,
-                decoration: InputDecoration(
-                    hintText: 'Write Todo Title', labelText: 'Title'),
-              ),
-              TextFormField(
-                validator: (_todoDescriptionController) {
-                  if (_todoDescriptionController!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return "Enter a valid description";
-                  }
-                },
-                controller: _todoDescriptionController,
-                decoration: InputDecoration(
-                    hintText: 'Write Todo Description',
-                    labelText: 'Description'),
-              ),
-              TextFormField(
-                validator: (_todoDateController) {
-                  if (_todoDateController!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return "Enter a valid date and time";
-                  }
-                },
-                controller: _todoDateController,
-                decoration: InputDecoration(
-                    hintText: 'Pick Todo Date',
-                    labelText: 'Date',
-                    prefixIcon: InkWell(
-                      onTap: () {
-                        _selectedTodoDate(context);
-                      },
-                      child: Icon(Icons.calendar_today),
-                    )),
-              ),
-              DropdownButtonFormField<dynamic>(
-                value: _selectedValue,
-                items: _categories,
-                hint: Text('Category'),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedValue = value;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                  onPressed: () async {
-                    if (formGlobalKey.currentState!.validate()) {
-                      formGlobalKey.currentState!.save();
-                      var todoObject = Todo();
-                      todoObject.title = _todoTitleController.text;
-                      todoObject.description = _todoDescriptionController.text;
-                      todoObject.category = _selectedValue.toString();
-                      todoObject.todoDate = _todoDateController.text;
-                      todoObject.isDone = 0;
-                      var result = await _todoService.saveTodo(todoObject);
-                      if (result > 0) {
-                        print(result);
-                        todoObject.id = result;
-                        await notificationHelper.showNotification(todoObject);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
-                      }
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Create Todo'),
+        ),
+        body: Form(
+          key: formGlobalKey,
+          child: (Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  validator: (_todoTitleController) {
+                    if (_todoTitleController!.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Enter a valid Title";
                     }
                   },
-                  child: Text('Save'))
-            ],
-          ),
-        )),
+                  controller: _todoTitleController,
+                  decoration: InputDecoration(
+                      hintText: 'Write Todo Title', labelText: 'Title'),
+                ),
+                TextFormField(
+                  validator: (_todoDescriptionController) {
+                    if (_todoDescriptionController!.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Enter a valid description";
+                    }
+                  },
+                  controller: _todoDescriptionController,
+                  decoration: InputDecoration(
+                      hintText: 'Write Todo Description',
+                      labelText: 'Description'),
+                ),
+                TextFormField(
+                  validator: (_todoDateController) {
+                    if (_todoDateController!.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Enter a valid date and time";
+                    }
+                  },
+                  controller: _todoDateController,
+                  decoration: InputDecoration(
+                      hintText: 'Pick Todo Date',
+                      labelText: 'Date',
+                      prefixIcon: InkWell(
+                        onTap: () {
+                          _selectedTodoDate(context);
+                        },
+                        child: Icon(Icons.calendar_today),
+                      )),
+                ),
+                DropdownButtonFormField<dynamic>(
+                  value: _selectedValue,
+                  items: _categories,
+                  hint: Text('Category'),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedValue = value;
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      if (formGlobalKey.currentState!.validate()) {
+                        formGlobalKey.currentState!.save();
+                        var todoObject = Todo();
+                        todoObject.title = _todoTitleController.text;
+                        todoObject.description =
+                            _todoDescriptionController.text;
+                        todoObject.category = _selectedValue.toString();
+                        todoObject.todoDate = _todoDateController.text;
+                        todoObject.isDone = 0;
+                        var result = await _todoService.saveTodo(todoObject);
+                        if (result > 0) {
+                          print(result);
+                          todoObject.id = result;
+                          await notificationHelper.showNotification(todoObject);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()),
+                          );
+                        }
+                      }
+                    },
+                    child: Text('Save'))
+              ],
+            ),
+          )),
+        ),
       ),
     );
   }

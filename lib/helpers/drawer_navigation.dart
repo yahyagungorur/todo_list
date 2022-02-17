@@ -23,7 +23,6 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               ),
               accountName: Text('Account Name'),
               accountEmail: Text('Account EMail'),
-              decoration: BoxDecoration(color: Colors.blue),
             ),
             ListTile(
                 leading: Icon(Icons.home),

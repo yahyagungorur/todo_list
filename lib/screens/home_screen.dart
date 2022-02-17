@@ -27,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Category> _categoryList = <Category>[];
   bool checkedValue = false;
   bool toogle = false;
+  DateTime pre_backpress = DateTime.now();
+
   @override
   void initState() {
     super.initState();
@@ -172,164 +174,184 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
+  Future<bool> _onBackPressed() async {
+    final timegap = DateTime.now().difference(pre_backpress);
+    final cantExit = timegap >= Duration(seconds: 2);
+    pre_backpress = DateTime.now();
+    if (cantExit) {
+      _showSuccessSnackBar("Press again Back Button exit", null);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    return ScaffoldMessenger(
-      key: _globalKey,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Todo List'),
-          actions: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Ink(
-                  width: 48.0,
-                  height: 48.0,
-                  decoration: ShapeDecoration(
-                    shape: const CircleBorder(
-                        side: BorderSide(color: Colors.transparent)),
-                  ),
-                  child: IconButton(
-                      padding: EdgeInsets.zero,
-                      splashRadius: 24.0,
-                      iconSize: 24.0,
-                      icon: themeProvider.isDarkMode
-                          ? Icon(Icons.wb_sunny_rounded)
-                          : Icon(Icons
-                              .nightlight_round_outlined), //BedTime -- wbSunny
-                      onPressed: () {
-                        final provider =
-                            Provider.of<ThemeProvider>(context, listen: false);
-                        provider.toogleTheme(themeProvider.isDarkMode);
-                      }),
-                ),
-              ],
-            )
-          ],
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _categoryList.isEmpty
-                ? Center(
-                    child: SizedBox(),
-                  )
-                : SizedBox(
-                    height: 40,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _categoryList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.only(
-                                top: 8.0, left: 8.0, right: 8.0, bottom: 8.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              onPressed: () {
-                                getTodosByCategory(_categoryList[index].name);
-                              },
-                              child: Text(_categoryList[index].name.toString()),
-                            ));
-                      },
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: ScaffoldMessenger(
+        key: _globalKey,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Todo List'),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Ink(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: ShapeDecoration(
+                      shape: const CircleBorder(
+                          side: BorderSide(color: Colors.transparent)),
                     ),
-                  ),
-            _todoList.isEmpty
-                ? Center(
-                    child: Text("Empty todo list"),
-                  )
-                : Expanded(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _todoList.length,
-                        itemBuilder: (context, index) {
-                          return Dismissible(
-                            key: UniqueKey(),
-                            direction: DismissDirection.endToStart,
-                            onDismissed: (_) {
-                              setState(() {
-                                _deleteFormDialog(context, _todoList[index]);
-                              });
-                            },
-                            background: Container(
-                              color: Colors.red,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              alignment: Alignment.centerRight,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              child: const Icon(
-                                Icons.delete,
-                                color: Colors.white,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: 8.0, left: 16.0, right: 16.0),
-                              child: Card(
-                                elevation: 8.0,
-                                child: ListTile(
-                                  leading: Radio<dynamic>(
-                                      value: 1,
-                                      groupValue: _todoList[index].isDone,
-                                      onChanged: (value) async {
-                                        setState(() {
-                                          _todoList[index].isDone = value ?? 0;
-                                        });
-                                        var result = await _todoService
-                                            .updateTodo(_todoList[index]);
-                                        if (result > 0 &&
-                                            _todoList[index].isDone == 1) {
-                                          _showSuccessSnackBar("Done", null);
-                                          await notificationHelper
-                                              .cancelNotification(
-                                                  _todoList[index].id);
-                                        }
-                                      },
-                                      toggleable: true,
-                                      activeColor: Colors.green),
-                                  title: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        _todoList[index].title.toString(),
-                                        style: TextStyle(
-                                            decoration:
-                                                _todoList[index].isDone == 1
-                                                    ? TextDecoration.lineThrough
-                                                    : TextDecoration.none),
-                                      ),
-                                    ],
-                                  ),
-                                  subtitle: Text(
-                                      _todoList[index].description.toString()),
-                                  trailing: Text(
-                                      _todoList[index].todoDate.toString()),
-                                  onTap: () {
-                                    _showFormDialog(context, _todoList[index]);
-                                  },
-                                ),
-                              ),
-                            ),
-                          );
+                    child: IconButton(
+                        padding: EdgeInsets.zero,
+                        splashRadius: 24.0,
+                        iconSize: 24.0,
+                        icon: themeProvider.isDarkMode
+                            ? Icon(Icons.wb_sunny_rounded)
+                            : Icon(Icons
+                                .nightlight_round_outlined), //BedTime -- wbSunny
+                        onPressed: () {
+                          final provider = Provider.of<ThemeProvider>(context,
+                              listen: false);
+                          provider.toogleTheme(themeProvider.isDarkMode);
                         }),
                   ),
-          ],
+                ],
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _categoryList.isEmpty
+                  ? Center(
+                      child: SizedBox(),
+                    )
+                  : SizedBox(
+                      height: 40,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _categoryList.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: EdgeInsets.only(
+                                  top: 8.0, left: 8.0, right: 8.0, bottom: 8.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  getTodosByCategory(_categoryList[index].name);
+                                },
+                                child:
+                                    Text(_categoryList[index].name.toString()),
+                              ));
+                        },
+                      ),
+                    ),
+              _todoList.isEmpty
+                  ? Center(
+                      child: Text("Empty todo list"),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _todoList.length,
+                          itemBuilder: (context, index) {
+                            return Dismissible(
+                              key: UniqueKey(),
+                              direction: DismissDirection.endToStart,
+                              onDismissed: (_) {
+                                setState(() {
+                                  _deleteFormDialog(context, _todoList[index]);
+                                });
+                              },
+                              background: Container(
+                                color: Colors.red,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                alignment: Alignment.centerRight,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: const Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: 8.0, left: 16.0, right: 16.0),
+                                child: Card(
+                                  elevation: 8.0,
+                                  child: ListTile(
+                                    leading: Radio<dynamic>(
+                                        value: 1,
+                                        groupValue: _todoList[index].isDone,
+                                        onChanged: (value) async {
+                                          setState(() {
+                                            _todoList[index].isDone =
+                                                value ?? 0;
+                                          });
+                                          var result = await _todoService
+                                              .updateTodo(_todoList[index]);
+                                          if (result > 0 &&
+                                              _todoList[index].isDone == 1) {
+                                            _showSuccessSnackBar("Done", null);
+                                            await notificationHelper
+                                                .cancelNotification(
+                                                    _todoList[index].id);
+                                          }
+                                        },
+                                        toggleable: true,
+                                        activeColor: Colors.green),
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          _todoList[index].title.toString(),
+                                          style: TextStyle(
+                                              decoration:
+                                                  _todoList[index].isDone == 1
+                                                      ? TextDecoration
+                                                          .lineThrough
+                                                      : TextDecoration.none),
+                                        ),
+                                      ],
+                                    ),
+                                    subtitle: Text(_todoList[index]
+                                        .description
+                                        .toString()),
+                                    trailing: Text(
+                                        _todoList[index].todoDate.toString()),
+                                    onTap: () {
+                                      _showFormDialog(
+                                          context, _todoList[index]);
+                                    },
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+            ],
+          ),
+          drawer: DrawerNavigation(),
+          floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => TodoScreen()));
+              },
+              child: const Icon(Icons.add)),
         ),
-        drawer: DrawerNavigation(),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TodoScreen()));
-            },
-            child: const Icon(Icons.add)),
       ),
     );
   }
