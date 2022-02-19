@@ -16,5 +16,9 @@ class DatabaseConnection {
         "CREATE TABLE categories(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT)");
     await database.execute(
         "CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, category TEXT, todoDate TEXT, isDone INTEGER)");
+    await database.execute(
+        "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT)");
+    await database.execute(
+        "CREATE TABLE cases(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT)");
   }
 }
