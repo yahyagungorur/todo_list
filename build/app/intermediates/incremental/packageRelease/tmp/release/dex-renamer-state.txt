@@ -1,4 +1,4 @@
-#Thu Feb 17 00:07:38 EET 2022
+#Sat Feb 19 15:12:20 EET 2022
 base.0=C\:\\Projects\\Flutter\\todo_list\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
