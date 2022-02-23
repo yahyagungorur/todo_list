@@ -108,13 +108,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         hintText: 'Write Categories', labelText: 'Category'),
                   ),
                   TextFormField(
-                    validator: (_categoryDescriptionController) {
-                      if (_categoryDescriptionController!.isNotEmpty) {
-                        return null;
-                      } else {
-                        return "Enter a valid description";
-                      }
-                    },
                     controller: _categoryDescriptionController,
                     decoration: InputDecoration(
                         hintText: 'Write Description',

@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_print, void_checks
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_list/helpers/drawer_navigation.dart';
 import 'package:todo_list/models/category.dart';
 import 'package:todo_list/models/todo.dart';
@@ -176,13 +179,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<bool> _onBackPressed() async {
     final timegap = DateTime.now().difference(pre_backpress);
-    final cantExit = timegap >= Duration(seconds: 2);
+    final cantExit = timegap >= Duration(seconds: 1);
     pre_backpress = DateTime.now();
     if (cantExit) {
       _showSuccessSnackBar("Press again Back Button exit", null);
       return false;
     } else {
-      return true;
+      exit(0);
     }
   }
 
@@ -330,6 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     subtitle: Text(_todoList[index]
                                         .description
                                         .toString()),
+                                    isThreeLine: true,
                                     trailing: Text(
                                         _todoList[index].todoDate.toString()),
                                     onTap: () {

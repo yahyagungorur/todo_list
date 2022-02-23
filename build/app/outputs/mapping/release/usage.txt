@@ -4707,10 +4707,10 @@ kotlinx.coroutines.DispatchedTaskKt:
     public static final int MODE_CANCELLABLE_REUSABLE
     public static final int MODE_UNDISPATCHED
     public static final int MODE_UNINITIALIZED
-kotlinx.coroutines.flow.FlowKt__MergeKt$flatMapMerge$$inlined$map$1$2$1
-kotlinx.coroutines.flow.FlowKt__ReduceKt$firstOrNull$$inlined$collectWhile$2$1
 kotlinx.coroutines.channels.AbstractSendChannel$SendBuffered:
     public void resumeSendClosed(kotlinx.coroutines.channels.Closed)
+kotlinx.coroutines.flow.FlowKt__ReduceKt$firstOrNull$$inlined$collectWhile$2$1
+kotlinx.coroutines.flow.FlowKt__MergeKt$flatMapMerge$$inlined$map$1$2$1
 androidx.core.util.ObjectsCompat
 com.google.common.collect.TreeBasedTable$1
 androidx.annotation.WorkerThread
@@ -13752,5 +13752,5 @@ org.threeten.bp.MonthDay$1
 android.support.v4.media.session.MediaControllerCompat$Callback:
     final android.media.session.MediaController$Callback mCallbackFwk
 org.threeten.bp.chrono.ChronoLocalDate$1
-io.flutter.plugin.platform.PlatformView$-CC
 io.flutter.plugin.common.BinaryMessenger$-CC
+io.flutter.plugin.platform.PlatformView$-CC

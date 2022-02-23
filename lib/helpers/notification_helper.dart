@@ -45,9 +45,11 @@ class NotificationHelper {
     );*/
     await flutterLocalNotificationsPlugin.zonedSchedule(
         todo.id!,
-        'Reminder - Last 5 Mins to ${todo.title}',
+        todo.notify == 0
+            ? 'Just start ${todo.title}'
+            : 'Reminder - Last ${todo.notify} Mins to ${todo.title}',
         todo.description,
-        time.subtract(const Duration(minutes: 5)),
+        time.subtract(Duration(minutes: todo.notify!)),
         platformChannelSpecifics,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,

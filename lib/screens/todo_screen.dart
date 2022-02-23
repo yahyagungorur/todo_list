@@ -24,6 +24,8 @@ class _TodoScreenState extends State<TodoScreen> {
   NotificationHelper notificationHelper = NotificationHelper();
   var _selectedValue;
   final formGlobalKey = GlobalKey<FormState>();
+  bool hasNotification = false;
+  double _value = 0;
 
   final _categories = <DropdownMenuItem>[];
   @override
@@ -97,13 +99,6 @@ class _TodoScreenState extends State<TodoScreen> {
                       hintText: 'Write Todo Title', labelText: 'Title'),
                 ),
                 TextFormField(
-                  validator: (_todoDescriptionController) {
-                    if (_todoDescriptionController!.isNotEmpty) {
-                      return null;
-                    } else {
-                      return "Enter a valid description";
-                    }
-                  },
                   controller: _todoDescriptionController,
                   decoration: InputDecoration(
                       hintText: 'Write Todo Description',
@@ -111,9 +106,11 @@ class _TodoScreenState extends State<TodoScreen> {
                 ),
                 TextFormField(
                   validator: (_todoDateController) {
-                    if (_todoDateController!.isNotEmpty) {
+                    try {
+                      DateFormat('dd/MM/yyy - HH:mm')
+                          .parse(_todoDateController!);
                       return null;
-                    } else {
+                    } catch (e) {
                       return "Enter a valid date and time";
                     }
                   },
@@ -138,6 +135,31 @@ class _TodoScreenState extends State<TodoScreen> {
                     });
                   },
                 ),
+                CheckboxListTile(
+                  secondary: const Icon(Icons.alarm),
+                  title: const Text(
+                      ' Do you want reminder notification before your todo?'),
+                  value: hasNotification,
+                  onChanged: (value) {
+                    setState(() {
+                      hasNotification = value!;
+                    });
+                  },
+                ),
+                hasNotification
+                    ? Slider(
+                        min: 0.0,
+                        max: 60.0,
+                        value: _value,
+                        divisions: 12,
+                        label: '${_value.round()} mins',
+                        onChanged: (value) {
+                          setState(() {
+                            _value = value;
+                          });
+                        },
+                      )
+                    : SizedBox(),
                 SizedBox(
                   height: 20,
                 ),
@@ -152,11 +174,19 @@ class _TodoScreenState extends State<TodoScreen> {
                         todoObject.category = _selectedValue.toString();
                         todoObject.todoDate = _todoDateController.text;
                         todoObject.isDone = 0;
+                        todoObject.notify = _value.toInt();
                         var result = await _todoService.saveTodo(todoObject);
                         if (result > 0) {
                           print(result);
                           todoObject.id = result;
-                          await notificationHelper.showNotification(todoObject);
+                          if (DateFormat('dd/MM/yyy - HH:mm')
+                                  .parse(_todoDateController.text)
+                                  .difference(DateTime.now().add(
+                                      Duration(minutes: todoObject.notify!))) >
+                              Duration(seconds: 0)) {
+                            await notificationHelper
+                                .showNotification(todoObject);
+                          }
                           Navigator.push(
                             context,
                             MaterialPageRoute(

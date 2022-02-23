@@ -5,6 +5,7 @@ class Todo {
   String? category;
   String? todoDate;
   int? isDone;
+  int? notify;
 
   todoMap() {
     // ignore: prefer_collection_literals
@@ -15,6 +16,7 @@ class Todo {
     mapping['category'] = category;
     mapping['todoDate'] = todoDate;
     mapping['isDone'] = isDone;
+    mapping['notify'] = notify;
 
     return mapping;
   }
