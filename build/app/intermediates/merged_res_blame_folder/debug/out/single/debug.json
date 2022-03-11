@@ -8,10 +8,6 @@
         "source": "C:\\Projects\\Flutter\\todo_list\\android\\app\\src\\main\\res\\drawable\\app_icon.jpg"
     },
     {
-        "merged": "C:\\Projects\\Flutter\\todo_list\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
-        "source": "C:\\Projects\\Flutter\\todo_list\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
-    },
-    {
         "merged": "C:\\Projects\\Flutter\\todo_list\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Projects\\Flutter\\todo_list\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },

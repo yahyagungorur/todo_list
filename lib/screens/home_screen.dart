@@ -330,12 +330,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ],
                                     ),
-                                    subtitle: Text(_todoList[index]
-                                        .description
-                                        .toString()),
-                                    isThreeLine: true,
-                                    trailing: Text(
-                                        _todoList[index].todoDate.toString()),
+                                    subtitle: Text(
+                                        _todoList[index].todoDate.toString(),
+                                        style: TextStyle(fontSize: 10)),
                                     onTap: () {
                                       _showFormDialog(
                                           context, _todoList[index]);
