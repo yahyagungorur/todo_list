@@ -45,10 +45,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   # recoding words
   speech_to_text: ^5.4.3
-
+  confetti: ^0.6.0
+  flutter_tts: ^3.4.0
   # floating action button effect
   avatar_glow: ^1.2.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -106,6 +106,9 @@ class _TodoScreenState extends State<TodoScreen> {
                         hintText: 'Write Todo Title', labelText: 'Title'),
                   ),
                   TextFormField(
+                    minLines: 1,
+                    maxLines: 5, // allow user to enter 5 line in textfield
+                    keyboardType: TextInputType.multiline,
                     controller: _todoDescriptionController,
                     decoration: InputDecoration(
                         hintText: 'Write Todo Description',

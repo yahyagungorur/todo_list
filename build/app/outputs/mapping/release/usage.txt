@@ -24,6 +24,7 @@ kotlin.ranges.UIntProgression
 com.google.common.collect.ForwardingListIterator
 com.google.common.util.concurrent.Futures$2
 com.google.common.collect.ImmutableMap$MapViewOfValuesAsSingletonSets
+com.tundralabs.fluttertts.R$id
 androidx.core.view.accessibility.AccessibilityViewCommand$MoveHtmlArguments:
     public java.lang.String getHTMLElement()
 androidx.fragment.R$styleable
@@ -759,6 +760,7 @@ androidx.appcompat.app.AppCompatDelegateImpl$AutoNightModeManager:
     boolean isListening()
 kotlinx.coroutines.flow.FlowKt__ChannelsKt$broadcastIn$1
 com.google.common.net.UrlEscapers
+com.tundralabs.fluttertts.R$string
 kotlin.collections.ArraysKt___ArraysJvmKt$asList$4
 com.google.common.collect.ImmutableEnumMap$1
 com.csdcorp.speech_to_text.R$layout
@@ -1641,6 +1643,7 @@ androidx.annotation.MenuRes
 com.google.common.base.Predicates$AndPredicate
 com.google.common.util.concurrent.UncheckedExecutionException
 com.google.common.collect.Cut$BelowValue
+com.tundralabs.fluttertts.R$dimen
 com.google.common.cache.CacheLoader$FunctionToCacheLoader
 kotlin.UByteArrayKt
 com.google.common.io.ByteSource
@@ -1760,6 +1763,7 @@ kotlin.sequences.SubSequence
 androidx.appcompat.widget.AppCompatEditText:
     public void <init>(android.content.Context)
 androidx.core.view.NestedScrollingChild3
+com.tundralabs.fluttertts.R$color
 com.google.common.net.InetAddresses$TeredoInfo
 kotlin.collections.ArraysKt___ArraysKt:
     private static final java.lang.Object component1(java.lang.Object[])
@@ -4581,6 +4585,7 @@ kotlin.jvm.internal.BooleanSpreadBuilder
 kotlin.system.ProcessKt
 com.google.common.io.CountingOutputStream
 androidx.customview.widget.ExploreByTouchHelper$2
+com.tundralabs.fluttertts.R
 kotlin.reflect.KProperty2$Getter
 androidx.core.widget.TextViewOnReceiveContentListener$Api16Impl
 kotlin.internal.PlatformDependent
@@ -8393,6 +8398,7 @@ com.google.common.collect.StandardTable$ColumnMap$ColumnMapEntrySet
 kotlin.jvm.internal.ShortCompanionObject
 androidx.core.content.pm.PackageInfoCompat
 com.google.common.collect.Maps$EntryFunction$2
+com.tundralabs.fluttertts.R$style
 kotlinx.coroutines.flow.FlowKt__ContextKt$flowWith$$inlined$unsafeFlow$1
 com.google.common.collect.ForwardingTable
 androidx.appcompat.app.ActionBarDrawerToggle$DelegateProvider
@@ -9854,6 +9860,10 @@ kotlinx.coroutines.flow.FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$2$
 com.google.common.collect.Maps$IteratorBasedAbstractMap
 kotlin.collections.AbstractMap$Companion
 com.google.common.util.concurrent.Monitor
+com.tundralabs.fluttertts.FlutterTtsPlugin:
+    public static void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
+    private static final java.lang.String SILENCE_PREFIX
+    private static final java.lang.String SYNTHESIZE_TO_FILE_PREFIX
 com.example.todo_list.R$raw
 io.flutter.embedding.android.FlutterActivity$NewEngineIntentBuilder
 kotlin.jvm.internal.unsafe.MonitorKt
@@ -9866,6 +9876,7 @@ androidx.core.net.DatagramSocketWrapper
 com.google.common.cache.LocalCache$EntryFactory$7
 com.google.common.hash.LittleEndianByteArray$1
 com.google.common.cache.CacheLoader$1
+com.tundralabs.fluttertts.R$drawable
 com.google.common.cache.CacheBuilderSpec$LongParser
 androidx.core.view.inputmethod.InputConnectionCompat
 androidx.core.app.NotificationCompat$Style:
@@ -10219,10 +10230,10 @@ com.google.common.hash.HashFunction
 kotlin.jvm.internal.FloatSpreadBuilder
 com.dexterous.flutterlocalnotifications.R$string
 androidx.loader.content.Loader$ForceLoadContentObserver
-android.support.v4.os.IResultReceiver$Stub$Proxy:
-    public java.lang.String getInterfaceDescriptor()
 kotlin.jvm.internal.PackageReference:
     public java.util.Collection getMembers()
+android.support.v4.os.IResultReceiver$Stub$Proxy:
+    public java.lang.String getInterfaceDescriptor()
 kotlin.TypeAliasesKt
 com.google.common.collect.StandardTable$ColumnMap$ColumnMapEntrySet$1
 kotlinx.coroutines.DefaultExecutorKt
@@ -10351,6 +10362,7 @@ com.google.common.graph.Traverser
 com.google.common.collect.ImmutableMapValues$2
 com.google.common.collect.ForwardingMultimap
 com.google.common.hash.ImmutableSupplier
+com.tundralabs.fluttertts.R$styleable
 com.google.common.primitives.ImmutableLongArray$Builder
 com.google.common.util.concurrent.TrustedListenableFutureTask
 com.google.common.base.Predicates$ObjectPredicate$1
@@ -11750,6 +11762,7 @@ androidx.core.provider.SelfDestructiveThread$3
 com.google.common.collect.Maps$7
 kotlin.ranges.ClosedFloatingPointRange
 kotlinx.coroutines.DispatchersKt
+com.tundralabs.fluttertts.R$integer
 kotlin.jvm.internal.Ref$DoubleRef
 com.google.common.collect.Multisets$ViewMultiset
 com.csdcorp.speech_to_text.R$styleable
@@ -12989,6 +13002,7 @@ androidx.core.provider.FontRequestWorker:
     private void <init>()
     static void resetTypefaceCache()
 com.google.common.collect.Iterables$6
+com.tundralabs.fluttertts.BuildConfig
 com.google.common.graph.Traverser$GraphTraverser$DepthFirstIterator$NodeAndSuccessors
 androidx.versionedparcelable.VersionedParcel:
     private void writeCollection(java.util.Collection,int)
@@ -13942,10 +13956,12 @@ com.dooboolab.TauEngine.FlautoPlayerEngineInterface:
     abstract void _finish()
 com.google.common.collect.ImmutableMapValues
 kotlin.UIntArrayKt
+com.tundralabs.fluttertts.R$attr
 kotlinx.coroutines.flow.FlowKt__LimitKt$takeWhile$$inlined$unsafeFlow$1
 kotlinx.coroutines.channels.Send:
     public abstract void resumeSendClosed(kotlinx.coroutines.channels.Closed)
 com.google.common.util.concurrent.ForwardingFuture
+com.tundralabs.fluttertts.R$layout
 com.google.common.graph.MutableGraph
 androidx.loader.R$drawable
 com.google.common.collect.ImmutableListMultimap$Builder
@@ -17432,6 +17448,9 @@ kotlinx.coroutines.scheduling.TasksKt:
     public static final int BLOCKING_DEFAULT_PARALLELISM
 io.flutter.plugin.editing.ListenableEditingState$1:
     final synthetic io.flutter.plugin.editing.ListenableEditingState this$0
+com.tundralabs.fluttertts.FlutterTtsPlugin:
+    private final java.lang.String tag
+    private final java.lang.String googleTtsEngine
 org.threeten.bp.MonthDay:
     public static org.threeten.bp.MonthDay from(org.threeten.bp.temporal.TemporalAccessor)
     public static final org.threeten.bp.temporal.TemporalQuery FROM

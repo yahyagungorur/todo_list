@@ -50,6 +50,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "confetti",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/confetti-0.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1",
       "packageUri": "lib/",
@@ -148,6 +154,12 @@
     {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_tts",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_tts-3.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
