@@ -10219,10 +10219,10 @@ com.google.common.hash.HashFunction
 kotlin.jvm.internal.FloatSpreadBuilder
 com.dexterous.flutterlocalnotifications.R$string
 androidx.loader.content.Loader$ForceLoadContentObserver
-android.support.v4.os.IResultReceiver$Stub$Proxy:
-    public java.lang.String getInterfaceDescriptor()
 kotlin.jvm.internal.PackageReference:
     public java.util.Collection getMembers()
+android.support.v4.os.IResultReceiver$Stub$Proxy:
+    public java.lang.String getInterfaceDescriptor()
 kotlin.TypeAliasesKt
 com.google.common.collect.StandardTable$ColumnMap$ColumnMapEntrySet$1
 kotlinx.coroutines.DefaultExecutorKt

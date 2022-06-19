@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:todo_list/helpers/drawer_navigation.dart';
 import 'package:todo_list/models/category.dart';
 import 'package:todo_list/models/todo.dart';
@@ -13,8 +12,11 @@ import 'package:todo_list/services/category_service.dart';
 import 'package:todo_list/services/todo_service.dart';
 import '../helpers/notification_helper.dart';
 import 'package:provider/provider.dart';
+import 'package:confetti/confetti.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
 }
@@ -27,10 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
   final _categoryService = CategoryService();
   var val = -1;
   final _globalKey = GlobalKey<ScaffoldMessengerState>();
-  List<Category> _categoryList = <Category>[];
+  final List<Category> _categoryList = <Category>[];
   bool checkedValue = false;
   bool toogle = false;
+  // ignore: non_constant_identifier_names
   DateTime pre_backpress = DateTime.now();
+  final controller = ConfettiController();
+  bool isPlaying = false;
 
   @override
   void initState() {
@@ -38,6 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
     getTodos();
     getCategories();
     notificationHelper.setOnNotificationClick(onNotificationClick);
+    controller.addListener(() {
+      setState(() {
+        isPlaying = controller.state == ConfettiControllerState.playing;
+      });
+    });
   }
 
   onNotificationClick(String payload) async {
@@ -231,6 +241,14 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              ConfettiWidget(
+                confettiController: controller,
+                shouldLoop: true,
+                blastDirectionality: BlastDirectionality.explosive,
+                gravity: 0.2,
+                emissionFrequency: 0.4,
+                numberOfParticles: 20,
+              ),
               _categoryList.isEmpty
                   ? Center(
                       child: SizedBox(),
@@ -291,10 +309,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    top: 8.0, left: 16.0, right: 16.0),
+                                    top: 8.0, left: 8.0, right: 8.0),
                                 child: Card(
                                   elevation: 8.0,
-                                  child: ListTile(
+                                  child: ExpansionTile(
+                                    childrenPadding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    expandedCrossAxisAlignment:
+                                        CrossAxisAlignment.end,
+                                    maintainState: true,
                                     leading: Radio<dynamic>(
                                         value: 1,
                                         groupValue: _todoList[index].isDone,
@@ -307,6 +330,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .updateTodo(_todoList[index]);
                                           if (result > 0 &&
                                               _todoList[index].isDone == 1) {
+                                            controller.play();
+                                            Future.delayed(
+                                                const Duration(seconds: 1), () {
+                                              controller.stop();
+                                            });
                                             _showSuccessSnackBar("Done", null);
                                             await notificationHelper
                                                 .cancelNotification(
@@ -333,10 +361,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                     subtitle: Text(
                                         _todoList[index].todoDate.toString(),
                                         style: TextStyle(fontSize: 10)),
-                                    onTap: () {
-                                      _showFormDialog(
-                                          context, _todoList[index]);
-                                    },
+                                    children: [
+                                      Text("Description:",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(_todoList[index]
+                                          .description
+                                          .toString()),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text("Category:",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(_todoList[index].category == "null"
+                                          ? "-"
+                                          : _todoList[index]
+                                              .category
+                                              .toString()),
+                                    ],
                                   ),
                                 ),
                               ),

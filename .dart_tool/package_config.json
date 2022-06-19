@@ -50,6 +50,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "confetti",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/confetti-0.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1",
       "packageUri": "lib/",
@@ -458,7 +464,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-03-11T22:55:34.379383Z",
+  "generated": "2022-05-29T15:58:54.416394Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
