@@ -13,6 +13,7 @@ import 'package:todo_list/services/todo_service.dart';
 import '../helpers/notification_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime pre_backpress = DateTime.now();
   final controller = ConfettiController();
   bool isPlaying = false;
-
+  final FlutterTts flutterTts = FlutterTts();
   @override
   void initState() {
     super.initState();
@@ -187,6 +188,12 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
+  speak(text) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+  }
+
   Future<bool> _onBackPressed() async {
     final timegap = DateTime.now().difference(pre_backpress);
     final cantExit = timegap >= Duration(seconds: 1);
@@ -335,6 +342,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 const Duration(seconds: 1), () {
                                               controller.stop();
                                             });
+                                            speak("DONE " +
+                                                _todoList[index].title!);
                                             _showSuccessSnackBar("Done", null);
                                             await notificationHelper
                                                 .cancelNotification(

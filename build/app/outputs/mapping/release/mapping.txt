@@ -1,11 +1,11 @@
 # compiler: R8
 # compiler_version: 2.1.62
 # min_api: 21
-# pg_map_id: 6e9b688
+# pg_map_id: ce23706
 # common_typos_disable
 $$ServiceLoaderMethods -> a:
-    java.util.Iterator $load$11414() -> a
-    java.util.Iterator $load$12023() -> b
+    java.util.Iterator $load$11456() -> a
+    java.util.Iterator $load$12067() -> b
 $r8$backportedMethods$utility$Boolean$1$hashCode -> b:
     int hashCode(boolean) -> a
 $r8$backportedMethods$utility$Long$1$hashCode -> c:
@@ -10400,7 +10400,86 @@ com.tekartik.sqflite.operation.OperationResult -> f.f.a.f.g:
     void success(java.lang.Object) -> b
 com.tekartik.sqflite.operation.SqlErrorInfo -> f.f.a.f.h:
     java.util.Map getMap(com.tekartik.sqflite.operation.Operation) -> a
-com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin -> f.g.a.a:
+com.tundralabs.fluttertts.FlutterTtsPlugin -> f.g.a.a:
+    int silencems -> o
+    android.speech.tts.TextToSpeech$OnInitListener onInitListener -> r
+    java.util.HashMap utterances -> m
+    boolean isTtsInitialized -> k
+    android.content.Context context -> i
+    android.speech.tts.TextToSpeech tts -> j
+    android.os.Bundle bundle -> n
+    java.util.ArrayList pendingMethodCalls -> l
+    android.os.Handler handler -> a
+    boolean awaitSpeakCompletion -> e
+    boolean speaking -> f
+    boolean awaitSynthCompletion -> g
+    android.speech.tts.UtteranceProgressListener utteranceProgressListener -> q
+    boolean synth -> h
+    io.flutter.plugin.common.MethodChannel$Result synthResult -> d
+    int queueMode -> p
+    io.flutter.plugin.common.MethodChannel methodChannel -> b
+    io.flutter.plugin.common.MethodChannel$Result speakResult -> c
+    void setEngine(java.lang.String,io.flutter.plugin.common.MethodChannel$Result) -> A
+    void setLanguage(java.lang.String,io.flutter.plugin.common.MethodChannel$Result) -> B
+    void setPitch(float,io.flutter.plugin.common.MethodChannel$Result) -> C
+    void setSpeechRate(float) -> D
+    void setVoice(java.util.HashMap,io.flutter.plugin.common.MethodChannel$Result) -> E
+    void setVolume(float,io.flutter.plugin.common.MethodChannel$Result) -> F
+    boolean speak(java.lang.String) -> G
+    void speakCompletion(int) -> H
+    void stop() -> I
+    void synthCompletion(int) -> J
+    void synthesizeToFile(java.lang.String,java.lang.String) -> K
+    void access$000(com.tundralabs.fluttertts.FlutterTtsPlugin,java.lang.String,java.lang.Object) -> a
+    java.util.HashMap access$100(com.tundralabs.fluttertts.FlutterTtsPlugin) -> b
+    android.speech.tts.TextToSpeech access$1000(com.tundralabs.fluttertts.FlutterTtsPlugin) -> c
+    boolean access$1102(com.tundralabs.fluttertts.FlutterTtsPlugin,boolean) -> d
+    java.util.ArrayList access$1200(com.tundralabs.fluttertts.FlutterTtsPlugin) -> e
+    io.flutter.plugin.common.MethodChannel access$1300(com.tundralabs.fluttertts.FlutterTtsPlugin) -> f
+    boolean access$200(com.tundralabs.fluttertts.FlutterTtsPlugin) -> g
+    boolean access$300(com.tundralabs.fluttertts.FlutterTtsPlugin) -> h
+    int access$400(com.tundralabs.fluttertts.FlutterTtsPlugin) -> i
+    boolean access$502(com.tundralabs.fluttertts.FlutterTtsPlugin,boolean) -> j
+    boolean access$602(com.tundralabs.fluttertts.FlutterTtsPlugin,boolean) -> k
+    io.flutter.plugin.common.MethodChannel$Result access$700(com.tundralabs.fluttertts.FlutterTtsPlugin) -> l
+    io.flutter.plugin.common.MethodChannel$Result access$800(com.tundralabs.fluttertts.FlutterTtsPlugin) -> m
+    android.speech.tts.UtteranceProgressListener access$900(com.tundralabs.fluttertts.FlutterTtsPlugin) -> n
+    java.util.Map areLanguagesInstalled(java.util.List) -> o
+    void getDefaultEngine(io.flutter.plugin.common.MethodChannel$Result) -> p
+    void getEngines(io.flutter.plugin.common.MethodChannel$Result) -> q
+    void getLanguages(io.flutter.plugin.common.MethodChannel$Result) -> r
+    int getMaxSpeechInputLength() -> s
+    void getSpeechRateValidRange(io.flutter.plugin.common.MethodChannel$Result) -> t
+    void getVoices(io.flutter.plugin.common.MethodChannel$Result) -> u
+    void initInstance(io.flutter.plugin.common.BinaryMessenger,android.content.Context) -> v
+    void invokeMethod(java.lang.String,java.lang.Object) -> w
+    java.lang.Boolean isLanguageAvailable(java.util.Locale) -> x
+    boolean isLanguageInstalled(java.lang.String) -> y
+    boolean ismServiceConnectionUsable(android.speech.tts.TextToSpeech) -> z
+com.tundralabs.fluttertts.FlutterTtsPlugin$1 -> f.g.a.a$a:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> a
+    void onProgress(java.lang.String,int,int) -> a
+com.tundralabs.fluttertts.FlutterTtsPlugin$2 -> f.g.a.a$b:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> f
+    int val$success -> e
+com.tundralabs.fluttertts.FlutterTtsPlugin$3 -> f.g.a.a$c:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> f
+    int val$success -> e
+com.tundralabs.fluttertts.FlutterTtsPlugin$4 -> f.g.a.a$d:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> a
+com.tundralabs.fluttertts.FlutterTtsPlugin$5 -> f.g.a.a$e:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> g
+    io.flutter.plugin.common.MethodChannel$Result val$result -> f
+    io.flutter.plugin.common.MethodCall val$call -> e
+com.tundralabs.fluttertts.FlutterTtsPlugin$6 -> f.g.a.a$f:
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> g
+    io.flutter.plugin.common.MethodChannel$Result val$result -> f
+    io.flutter.plugin.common.MethodCall val$call -> e
+com.tundralabs.fluttertts.FlutterTtsPlugin$7 -> f.g.a.a$g:
+    java.lang.Object val$arguments -> f
+    com.tundralabs.fluttertts.FlutterTtsPlugin this$0 -> g
+    java.lang.String val$method -> e
+com.whelksoft.flutter_native_timezone.FlutterNativeTimezonePlugin -> f.h.a.a:
     io.flutter.plugin.common.MethodChannel channel -> a
     java.util.List getAvailableTimezones() -> a
     java.lang.String getLocalTimezone() -> b

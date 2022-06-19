@@ -32,9 +32,11 @@ Referenced Strings:
   /proc/self/fd/
   /raw/
   0
+  0.5
   00
   0_resource_name_obfuscated
   0x%08x
+  1.5
   9223372036854775808
   :0
   :00
@@ -712,11 +714,13 @@ Referenced Strings:
   SHORT_STANDALONE
   SHOW
   SHOW_ON_SCREEN
+  SIL_
   SMART
   SPELLOUT
   SST
   STANDARD
   STARTED
+  STF_
   STRICT
   STRING
   SUNDAY
@@ -774,6 +778,7 @@ Referenced Strings:
   TOP_OVERLAYS
   TRANSFORM
   TRUE
+  TTS
   TUESDAY
   TZDB
   Taisho
@@ -1120,6 +1125,7 @@ Referenced Strings:
   android.speech.extra.RESULTS_PENDINGI...
   android.speech.extra.RESULTS_PENDINGI...
   android.speech.extra.SUPPORTED_LANGUAGES
+  android.speech.tts.TextToSpeech$Conne...
   android.summaryText
   android.support.BIND_NOTIFICATION_SID...
   android.support.PARENT_ACTIVITY
@@ -1234,6 +1240,7 @@ Referenced Strings:
   appendable
   appops
   arch_disk_io_%d
+  areLanguagesInstalled
   areNotificationsEnabled
   arg
   args
@@ -1251,6 +1258,8 @@ Referenced Strings:
   autocorrect
   autofill
   available
+  awaitSpeakCompletion
+  awaitSynthCompletion
   b
   background
   background_mode
@@ -1355,6 +1364,7 @@ Referenced Strings:
   com.dooboolab.flutter_sound_player
   com.dooboolab.flutter_sound_recorder
   com.google.android.googlequicksearchbox
+  com.google.android.tts
   com.google.common.base.Strings
   com.htc.intent.action.QUICKBOOT_POWERON
   com.tekartik.sqflite
@@ -1502,6 +1512,7 @@ Referenced Strings:
   enable_state_restoration
   enabled
   enabled_notification_listeners
+  end
   endColor
   endX
   endY
@@ -1546,6 +1557,7 @@ Referenced Strings:
   fields
   file
   file.separator
+  fileName
   file_id
   files
   fillAlpha
@@ -1578,6 +1590,7 @@ Referenced Strings:
   flutter_assets
   flutter_deeplinking_enabled
   flutter_native_timezone
+  flutter_tts
   focus
   focusGain
   font
@@ -1613,19 +1626,23 @@ Referenced Strings:
   getChildId
   getConstructorId
   getDatabasesPath
+  getDefaultEngine
   getDeferredComponentInstallState
   getDescriptor
   getDisplayFeatures
   getDisplayInfo
+  getEngines
   getExternalCacheDirectories
   getExternalStorageDirectories
   getHorizontallyScrolling
   getIBinder
   getJavaLangAccess
+  getLanguages
   getLayoutAlignment
   getLayoutDirection
   getLocalTimezone
   getMaxAvailableHeight
+  getMaxSpeechInputLength
   getModule
   getNextMatch
   getNotificationAppLaunchDetails
@@ -1644,6 +1661,7 @@ Referenced Strings:
   getScaledScrollFactor
   getScript
   getSourceNodeId
+  getSpeechRateValidRange
   getStackTraceDepth
   getStackTraceElement
   getStorageDirectory
@@ -1655,6 +1673,7 @@ Referenced Strings:
   getUnicodeLocaleType
   getUri
   getViewRootImpl
+  getVoices
   getWindowLayoutInfo
   givenName
   gps
@@ -1734,6 +1753,8 @@ Referenced Strings:
   isDecoderSupported
   isEncoderSupported
   isImportant
+  isLanguageAvailable
+  isLanguageInstalled
   isProjected
   islamic
   iso8601
@@ -1901,6 +1922,7 @@ Referenced Strings:
   mOverlapAnchor
   mResourcesImpl
   mServedView
+  mServiceConnection
   mSpacingAdd
   mSpacingMult
   mStableInsets
@@ -1911,6 +1933,7 @@ Referenced Strings:
   makeBackgroundTaskQueue
   makeOptionalFitsSystemWindows
   matchDateTimeComponents
+  max
   maxProgress
   media_item
   memoryPressure
@@ -1923,6 +1946,7 @@ Referenced Strings:
   middleInitial
   middleName
   millisecondsSinceEpoch
+  min
   minute
   mipmap
   missingContext
@@ -1968,6 +1992,8 @@ Referenced Strings:
   noResult
   nodeId
   none
+  normal
+  notInstalled
   notListening
   notification
   notificationData
@@ -2090,6 +2116,7 @@ Referenced Strings:
   phoneNumberDevice
   placeholderIntent
   plainCodePoint
+  platform
   platformBrightness
   platformSpecifics
   platformViewId
@@ -2252,16 +2279,23 @@ Referenced Strings:
   setClipToScreenEnabled
   setDirection
   setDisplayFeatures
+  setEngine
   setEpicenterBounds
   setExclusiveCheckable
   setFocus
   setInitialRoute
+  setLanguage
   setLayoutDirection
   setLocale
   setLogLevel
+  setPitch
   setPosture
+  setQueueMode
   setRemoveOnCancelPolicy
+  setSharedInstance
   setSidecarCallback
+  setSilence
+  setSpeechRate
   setSpeed
   setStarted
   setSubscriptionDuration
@@ -2269,6 +2303,7 @@ Referenced Strings:
   setTouchModal
   setUIProgressBar
   setValue
+  setVoice
   setVolume
   setWindowLayoutType
   setupRecognizerIntent
@@ -2314,6 +2349,12 @@ Referenced Strings:
   sound_opus.caf
   sound_pcm.caf
   source
+  speak
+  speak.onCancel
+  speak.onComplete
+  speak.onError
+  speak.onProgress
+  speak.onStart
   speaker
   speed
   splitInfo
@@ -2325,6 +2366,7 @@ Referenced Strings:
   splitRules
   sql
   sqlite_error
+  start
   startColor
   startForegroundService
   startOffset
@@ -2378,6 +2420,10 @@ Referenced Strings:
   sun.misc.Unsafe
   surface
   synchronizeToNativeViewHierarchy
+  synth.onComplete
+  synth.onError
+  synth.onStart
+  synthesizeToFile
   systemNavigationBarColor
   systemNavigationBarContrastEnforced
   systemNavigationBarDividerColor
@@ -2460,6 +2506,7 @@ Referenced Strings:
   username
   usesChronometer
   usesVirtualDisplay
+  utteranceId
   value
   valueFrom
   valueTo
@@ -2496,6 +2543,7 @@ Referenced Strings:
   windowMetricsCalculator
   windowToken
   withUI
+  word
   workerCtl
   write
   x
@@ -2657,6 +2705,7 @@ Marking id:text:2131165350 used because its prefix matches string pool constant 
 Marking id:text2:2131165351 used because its prefix matches string pool constant text
 Marking id:textSpacerNoButtons:2131165352 used because its prefix matches string pool constant text
 Marking id:textSpacerNoTitle:2131165353 used because its prefix matches string pool constant text
+Marking attr:maxButtonHeight:2130837680 used because its prefix matches string pool constant max
 Marking attr:menu:2130837682 used because its prefix matches string pool constant menu
 Marking attr:background:2130837556 used because its prefix matches string pool constant background
 Marking attr:backgroundSplit:2130837557 used because its prefix matches string pool constant background
@@ -2714,6 +2763,8 @@ Marking id:accessibility_custom_action_6:2131165219 used because its prefix matc
 Marking id:accessibility_custom_action_7:2131165220 used because its prefix matches string pool constant acc
 Marking id:accessibility_custom_action_8:2131165221 used because its prefix matches string pool constant acc
 Marking id:accessibility_custom_action_9:2131165222 used because its prefix matches string pool constant acc
+Marking id:end:2131165268 used because its prefix matches string pool constant end
+Marking id:end_padder:2131165269 used because its prefix matches string pool constant end
 Marking id:message:2131165290 used because its prefix matches string pool constant message
 Marking attr:indeterminateProgressStyle:2130837656 used because its prefix matches string pool constant indeterminate
 Marking styleable:SplitPairRule:-1 used because its prefix matches string pool constant SplitPairRule
@@ -3000,6 +3051,7 @@ Marking attr:thumbTintMode:2130837763 used because its prefix matches string poo
 Marking attr:queryBackground:2130837705 used because its prefix matches string pool constant query
 Marking attr:queryHint:2130837706 used because its prefix matches string pool constant query
 Marking attr:queryPatterns:2130837707 used because its prefix matches string pool constant query
+Marking id:normal:2131165295 used because its prefix matches string pool constant normal
 Marking id:none:2131165294 used because its prefix matches string pool constant none
 Marking id:tag_accessibility_actions:2131165337 used because its prefix matches string pool constant tag
 Marking id:tag_accessibility_clickable_spans:2131165338 used because its prefix matches string pool constant tag
@@ -3596,6 +3648,7 @@ attr:actionBarDivider:2130837504,
    attr:listMenuViewStyle:2130837669,
    attr:logo:2130837678,
    attr:logoDescription:2130837679,
+   attr:maxButtonHeight:2130837680,
    attr:menu:2130837682,
    attr:nestedScrollViewStyle:2130837687,
    attr:panelMenuListTheme:2130837695,
@@ -3877,6 +3930,7 @@ attr:actionBarDivider:2130837504,
    id:media_controller_compat_view_tag:2131165289,
    id:message:2131165290,
    id:none:2131165294,
+   id:normal:2131165295,
    id:notification_background:2131165296,
    id:notification_main_column:2131165297,
    id:notification_main_column_container:2131165298,

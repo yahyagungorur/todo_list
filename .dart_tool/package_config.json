@@ -158,6 +158,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_tts",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_tts-3.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
@@ -464,7 +470,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-05-29T15:58:54.416394Z",
+  "generated": "2022-06-19T11:10:17.729552Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

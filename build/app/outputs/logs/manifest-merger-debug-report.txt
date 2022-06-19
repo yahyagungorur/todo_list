@@ -11,6 +11,7 @@ MERGED from [:sqflite] C:\Projects\Flutter\todo_list\build\sqflite\intermediates
 MERGED from [:flutter_native_timezone] C:\Projects\Flutter\todo_list\build\flutter_native_timezone\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_local_notifications] C:\Projects\Flutter\todo_list\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-28:12
 MERGED from [:path_provider_android] C:\Projects\Flutter\todo_list\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [:flutter_sound_lite] C:\Projects\Flutter\todo_list\build\flutter_sound_lite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\ad201fac15a88598107ec645f351f5b4\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
@@ -88,6 +89,8 @@ MERGED from [:speech_to_text] C:\Projects\Flutter\todo_list\build\speech_to_text
 		ADDED from C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:9:22-73
 queries
 ADDED from C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:10:5-14:15
+MERGED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-11:15
+MERGED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-11:15
 intent#action:name:android.speech.RecognitionService
 ADDED from C:\Projects\Flutter\todo_list\android\app\src\main\AndroidManifest.xml:11:9-13:18
 action#android.speech.RecognitionService
@@ -176,6 +179,8 @@ MERGED from [:flutter_local_notifications] C:\Projects\Flutter\todo_list\build\f
 MERGED from [:flutter_local_notifications] C:\Projects\Flutter\todo_list\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Projects\Flutter\todo_list\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Projects\Flutter\todo_list\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_sound_lite] C:\Projects\Flutter\todo_list\build\flutter_sound_lite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_sound_lite] C:\Projects\Flutter\todo_list\build\flutter_sound_lite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\ad201fac15a88598107ec645f351f5b4\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
@@ -286,6 +291,12 @@ action#com.htc.intent.action.QUICKBOOT_POWERON
 ADDED from [:flutter_local_notifications] C:\Projects\Flutter\todo_list\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:23:17-82
 	android:name
 		ADDED from [:flutter_local_notifications] C:\Projects\Flutter\todo_list\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:23:25-79
+intent#action:name:android.intent.action.TTS_SERVICE
+ADDED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-10:18
+action#android.intent.action.TTS_SERVICE
+ADDED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-72
+	android:name
+		ADDED from [:flutter_tts] C:\Projects\Flutter\todo_list\build\flutter_tts\intermediates\library_manifest\debug\AndroidManifest.xml:9:21-69
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Yahya\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 	android:required
